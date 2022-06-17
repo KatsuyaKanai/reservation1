@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope :user do
-    root "homes#index"
-    get 'homes/index'
-
-    get '/users/sign_out' => 'devise/sessions#destoroy'
+  root to: 'homes#index'
+  get '/homes/index', to: 'homes#index'
+  get '/users/:id', to: 'users#new', as: 'profile'
+  get '/show/:id', to: 'users#show', as: 'account'
+  post '/users/:id', to: 'users#new'
+  post '/rooms/new', to: 'rooms#show'
+  resources :users, :rooms
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   end
-  resource :users do
-    get 'profile'
-    get 'account'
-    post 'profile'
-  end
-end
-
- 
+  
