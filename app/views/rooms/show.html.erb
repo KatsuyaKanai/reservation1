@@ -1,1 +1,31 @@
-gh
+<div class="notifications">
+</div>
+<div class-"container room-show">
+    <div class="row">
+        <div class="col-md-8">
+            <%= img_tag '@room.room_image' %>
+            <%= img_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg' %>
+            <div class="col-md-4">
+                <h5 class="price-icon">
+                <%= @room.room_price %>
+                </h5>
+                <div class="room-show-profile">
+                    <p class="room-show-profile-name"><%= @room.room_name %></p>
+                    <p class="room-show-profile-addres"><%= @room.room_address %></p>
+                </div>
+                <p class="room-show-detile-content"><%= @room.room_introduce %></p>
+                <%= form_with model:@room do |f| %>
+                    <%= f.label :start_date, "開始日" %>
+                    <%= f.date_field :start_date %>
+                    <%= f.label :end_date, "終了日" %>
+                    <%= f.date_field :end_date %>
+                    <%= f.label :person_num, "人数" %>
+                    <%= f.number_field :person_num %>
+                    <%= f.submit "予約する" %>
+                <% end %>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>

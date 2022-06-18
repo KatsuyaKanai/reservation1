@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   
-  before_action :set_room, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:show]
+ # before_action :set_room, except: [:index, :new, :create]
+  #before_action :authenticate_user!, except: [:show]
 
   def index
     @rooms = Room.all
@@ -9,16 +9,21 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    
+  end
+
+  def create
+    @room = Room.new(params.require(:room).permit(:room_name,:room_introduction,:room_price,:room_address,:room_image))
+    if @room
+      flash[:notice] = "登録しました"
+      redirect_to "rooms/create"
+    else
+      render "new"
+    end
   end
 
   def show
-    @room = Room.find(params[:id])
-  end
-
-  
-
-  def create
-    @room = Room.find(params[:id])
+    @room = Room.find(params[:show])
   end
 
   def listing

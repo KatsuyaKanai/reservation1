@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
             <ul class= "active">
-                <%=link_to "アカウント",account_path(id: current_user) %>
-                <%=link_to "プロフィール",profile_path(id: current_user) %>
+                <%=link_to "アカウント",account_path(@user) %>
+                <%=link_to "プロフィール",profile_path(@user) %>
             </ul>
         </div>
         <div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
@@ -21,24 +21,17 @@
                         <h5>アカウント</h5>
                     </div>
                 </div>
-                <div class="update-content">
-                    <div class="row">
-                        <label class="col-md-3" for="email">メールアドレス</label>
-                        <div class="col-md-9">
-                            <p><%= @user.email %></p>
-                        </div>
-                    </div>
+                <div class="update-content","row">
+                    <%= form_with model: @user do |f| %>
+                        <%= f.label :email, "メールアドレス", class:"col-md-3" %>
+                        <p class="col-md-9"><%= @user.email %></p>
+                        <%= f.label :password, "パスワード", class:"col-md-3" %>
+                        <p class="col-md-9"><%= @user.password %>********</p>
+                    <% end %>
                 </div>
                 <div class="update-content">
                     <div class="row">
-                        <label class="col-md-3" for="password">パスワード</label>
-                        <div class="col-md-9">
-                            <p><%= @user.password %></p>
-                        </div>
-                    </div>
-                <div class="update-content">
-                    <div class="row">
-                    <%=link_to "編集", edit_user_path(id: current_user), class: "col-md-2 btn btn-primary mx-3" %>
+                        <%=link_to "編集", edit_user_path(id: current_user), class: "col-md-2 btn btn-primary mx-3" %>
                     </div>
                 </div>
             </div>

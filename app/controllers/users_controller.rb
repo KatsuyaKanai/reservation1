@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    
+   
     def index
         @users = User.all
     end
@@ -8,13 +8,12 @@ class UsersController < ApplicationController
    
     def new
         @user = User.new
+        @user = User.find(params[:id])
     end
     def create
         @user = User.find(params[:id])
     end
-    def users_profile
-        @user = User.find(params[:id])
-    end
+   
     def show
         @user = User.find(params[:id])
     end
@@ -24,9 +23,9 @@ class UsersController < ApplicationController
         binding.pry
         '/homes/index'
     end
+    def update
+    end
     
-    
-
 
     def create
         @user = User.new(params[:id])

@@ -13,8 +13,28 @@
         </div>
         <div class="col-lg-10 room-view">
             <div class="room-view-box">
-                <%= form_with do |room| %>
-                
+                <div class="update-content">
+                    <div class="row">
+                        <h5>ルーム情報登録<h5>
+                    </div>
+                </div>
+                <div class="update-content">
+                    <%= form_with model:@room do |f| %>
+                        <%= f.hidden_field :room_id, value: @current_room %>
+                        <%= f.label :room_name, "ルーム名", class:"col-md-3 required-a" %>
+                        <%= f.text_field :room_name, placeholder: "ルーム名を入力", class:"form-control mb-4 col-md-9" %>
+                        <%= f.label :room_introduction, "ルーム紹介", class:"col-md-3 required-a" %>
+                        <%= f.text_area :room_introduction, size: "60x5", placeholder: "ルーム紹介を入力", class:"form-control mb-4 col-md-9" %>
+                        <%= f.label :room_price, "料金", class:"col-md-3 required-a" %>
+                        <%= f.number_field :room_price, min:0, placeholder: "一日あたりの料金を入力", class:"form-control mb-4 col-md-9" %>
+                        <%= f.label :room_address, "住所", class:"col-md-3 required-a" %>
+                        <%= f.text_field :room_address, placeholder: "住所を入力", class:"form-control mb-4 col-md-9" %>
+                        <%= f.label :room_image, "ルーム画像", class:"col-md-3 required-a" %>
+                        <%= f.file_field :room_image, class:"form-control mb-4 col-md-9" %>
+                        <%= f.submit "登録", class:"col-md-2 btn-primary mx-3"%>
+                    <% end %>
+                </div>
+                    <%#
                     <div class="update-content">
                         <div class="row">
                             <h5>ルーム情報登録<h5>
@@ -65,7 +85,7 @@
                             <input type="submit" name="commit" value="登録" class="col-md-2 btn-primary mx-3" data-disable-with="登録">
                         </div>
                     </div>
-                <% end %>
+                    %>
             </div>
         </div>
     </div>

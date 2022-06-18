@@ -25,21 +25,8 @@
         <%= form_with url: "/search", method: :get do |form| %>
           <%= form.label :query, "Search for:" %>
           <%= form.text_field :query %>
-          <%= form.submit "Search" %>
+          <%= form.submit "探す" %>
         <% end %>
-        <%#
-        <form action="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search" accept-charset="UTF-8" method="get">
-        <div class="header-sharch d-lg-inline-block d-none">
-          <input type="text" name="area" id="area" value class="form-control" placeholder="エリア" >
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div class="header-sharch d-lg-inline-block d-none">
-          <input type="text" name="keyword" id="keyword" value class="form-control" placeholder="キーワード" >
-          <i class="fas fa-search"></i>
-        </div>
-          <input type="submit" name="commit" value class="d-none" data-disable-with="" >
-        </form>
-        %>
     </div>
     <div class="header-right-nav">
         <div class="nav-item">
@@ -50,7 +37,7 @@
                   <%=link_to "ルーム登録",new_room_path %>
                   <%=link_to "予約済みルーム一覧",rooms_path %>
                   <%=link_to "登録済みルーム一覧",rooms_path %>
-                  <%=link_to "設定",users_path(@user) %>
+                  <%=link_to "設定",account_path(current_user) %>
                   <%=link_to "ログアウト",destroy_user_session_path, method: :delete %>
               </ul>
           <% else %>
