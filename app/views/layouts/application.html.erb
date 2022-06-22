@@ -31,7 +31,9 @@
     <div class="header-right-nav">
         <div class="nav-item">
           <% if user_signed_in? %>
-            <label for="menu">メニュー</label>
+            <label for="menu" >
+            <%= image_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg', class:"host-icon mx-3 img" %>
+            </label>
             <input type="checkbox" id="menu">
               <ul class="dropdown">
                   <%=link_to "ルーム登録",new_room_path %>
