@@ -8,30 +8,30 @@
                     予約内容確認
                     </h4>
                     <h5 class= "price-icon">
-                    #ルームの一日あたりの費用x使用人数、今は一日の費用
+                    <!-- ルームの一日あたりの費用x使用人数、今は一日の費用 -->
                     <%= @room.room_price %>円/日
                     </h5>
                     <div class= "reservation-new-date-select">
-                    <%= form_with model: @room do |f| %>
+                    <%= form_with url: reservation_index_path do |f| %>
                         <%= f.hidden_field :id %>
                         <%= f.label :start_date,"開始日" %></br>
                         <%= f.text_field :start_date, value: @room.start_date, readonly: true %></br>
                         <%= f.label :end_date, "終了日" %></br>
                         <%= f.text_field :end_date, value: @room.end_date, readonly: true %></br>
                         <h6 class="reservations-new-check-content">
-                        #ルームの使用日数、今は終了日
-                        使用日数 : <%= @room.end_date %>日</br>
+                        <!-- ルームの使用日数、今は終了日 -->
+                        使用日数 : <%= @room.stay_days %>日</br>
                         </h6>
                         <h6 class="reservations-new-check-content">
                         人数 : <%= @room.person_num %>人</br>
                         </h6>
-                        <%= f.label :total_amount,"合計金額" %>
-                        <--! #ルームの一日あたりの費用x使用人数x使用日数、今は一日の費用 -->
-                        <%= f.number_field :total_amount, value: @room.room_price, readonly: true %></br>
+                        <%= f.label :total_price,"合計金額" %>
+                        <!-- #ルームの一日あたりの費用x使用人数x使用日数、今は一日の費用 -->
+                        <%= @room.total_price %>円</br>
                         <p class="reservations-new-check-content">
                         上記内容でよろしければ「予約を確定」を押してください
                         </p>
-                        <%= f.submit "予約を確定" %>
+                        <%= f.submit "予約を確定" %></br>
                         <%= link_to "戻る", :back %>
                     <% end %>
                 </div>

@@ -469,7 +469,7 @@ label[for="menu"]::before{
     margin: 0 15px;
     font-size: 16px;
 }
-.room-new .update-content labal{
+.room-new,.update-content labal{
     font-weight: bold;
 }
 .room-show,.reservations-new{
@@ -525,17 +525,20 @@ label[for="menu"]::before{
 input[type=date],input[type=datetime-local],input[type=month],input[type=time]{
     -webkit-appearance: listbox;
 }
-.notifcations .notice{
+.notifcations, .notice{
     background-color: lightblue;
 }
-.user .user-nav-mobile li{
+.user, .user-nav-mobile li{
     float: left;
 }
-.user .user-nav{
+.user, .user-nav{
     width: 100%;
     box-sizing: border-box;
     padding: 30px 15px;
 }
-.user .user-nav-pc{
+.user, .user-nav-pc{
     height: 100vh;
+}
+.offset-3{
+    margin-left: 30%;
 }

@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
     end
     
     def after_sign_in_path_for(resource)
-        '/users'
+        binding.pry
+        profile_path(@user)
     end
     def after_sign_out_path_for(resource)
         '/homes/index'
@@ -27,10 +28,12 @@ class ApplicationController < ActionController::Base
         '/homes/index'
     end
     def new
+        binding.pry
         @user =User.new(params[:id])
     end
 
     def users_profile
+        binding.pry
         @user = User.find(params[:id])
     end
     

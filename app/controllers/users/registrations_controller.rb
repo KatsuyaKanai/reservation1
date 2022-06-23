@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def create
     @user = User.new(users_params)
+    binding.pry
     if @user.save
         redirect_to ('/users/profile')
     else
@@ -19,7 +20,6 @@ private
 def users_params
     params.require(:user).permit(:name, :email, :password)
 end
-    private
   
     def sign_up_params
       params.require(:name, :email,:password, :password_confirmation)

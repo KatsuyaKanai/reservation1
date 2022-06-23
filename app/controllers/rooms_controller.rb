@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
  # before_action :set_room, except: [:index, :new, :create]
   #before_action :authenticate_user!, except: [:show]
 
+  def user_id
+    user_id = @user.id
+  end
+  
   def index
     @rooms = Room.all
   end
@@ -13,9 +17,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-    @room = Room.new(params.require(:room).permit(:user_id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
+    @room = Room.new(params.require(:room).permit(:id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
     if @room.save!
       flash[:notice] = "登録しました"
+      binding.pry
       redirect_to room_path(@room)
     else
       flash[:notice] = "失敗しました"
@@ -48,7 +53,7 @@ class RoomsController < ApplicationController
     if @room.update(params.require(:room).permit(:id,:start_date,:end_date,:person_num))
       flash[:notice]= "保存しました。"
       binding.pry
-      redirect_to new_reservation_path
+      redirect_to new_reservation_path(room: room_params)
       binding.pry
     else
       flash[:alert]= "問題が発生しました。"
@@ -61,11 +66,9 @@ class RoomsController < ApplicationController
   end
 
   private
-    def set_room
-      @room = Room.find(params[:id])
-    end
+  
     def room_params
-      params.require(:room).permit(:user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image)
+      params.require(:room).permit(:id, :user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image, :start_date, :end_date, :person_num)
     end
 
 

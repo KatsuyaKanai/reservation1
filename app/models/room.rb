@@ -11,5 +11,16 @@ class Room < ApplicationRecord
     validates :room_price,presence: true
     validates :room_address,presence: true
     validates :room_image,presence: true
+
+    def stay_days
+        (end_date - start_date).to_int
+    end
+
+    def total_price
+        room_price * (end_date - start_date).to_int * person_num
+    end
+
+
+
     
 end
