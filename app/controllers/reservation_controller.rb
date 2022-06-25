@@ -6,25 +6,31 @@ class ReservationController < ApplicationController
 
   end
   def new
-    @reservation = Reservation.new
-    @reservation = @room
-    @room = Room.find(params[:room][:id])
     
+    binding.pry
+    @room = Reservation.find(params[:room_id])
+    binding.pry
   end
   def show
-    @reservation = @room
     @room = Room.find(params[:id])
-    @reservation = Reservation.find(params[:id])
+    binding.pry
+    @reservation = Reservation.new
+    binding.pry
   end
   def update
   end
   def create
     @reservation = Reservation.new
+    binding.pry
+    @room = Room.find(params[room_id])
+    
+    binding.pry
     if @reservation.save
       binding.pry
       redirect_to reservation_path(@reservation)
     end
   end
+  
 
 
 end

@@ -16,8 +16,9 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = current_user.rooms.build(room_params)
-    @room = Room.new(params.require(:room).permit(:id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
+    @room = Room.new(params.require(:room).permit(:id, :user_id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
+    @room.user_id = current_user.id
+    binding.pry
     if @room.save!
       flash[:notice] = "登録しました"
       binding.pry
@@ -29,7 +30,9 @@ class RoomsController < ApplicationController
   end
 
   def show
+    binding.pry
     @room = Room.find(params[:id])
+   
   end
 
   def listing
@@ -49,26 +52,25 @@ class RoomsController < ApplicationController
 
   def update
 
-    @room = Room.find(params[:id])
-    if @room.update(params.require(:room).permit(:id,:start_date,:end_date,:person_num))
-      flash[:notice]= "保存しました。"
-      binding.pry
-      redirect_to new_reservation_path(room: room_params)
-      binding.pry
-    else
-      flash[:alert]= "問題が発生しました。"
+    binding.pry
+    
+    @reservation= Reservation.new(params.permit(:room_id, :start_date, :end_date, :person_num, :total_price))
+    if @reservation.save
+    
+    flash[:notice]= "保存しました。"
+    binding.pry
+    redirect_to new_reservation_path
     end
   end
 
 
-  def list_params
-    params.require(:user).permit(:name, :email, :image)
-  end
+  
 
   private
   
     def room_params
-      params.require(:room).permit(:id, :user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image, :start_date, :end_date, :person_num)
+      params.require(:room).permit(:id, :user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image)
+      
     end
 
 

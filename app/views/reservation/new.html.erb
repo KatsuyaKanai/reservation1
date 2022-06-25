@@ -8,26 +8,24 @@
                     予約内容確認
                     </h4>
                     <h5 class= "price-icon">
-                    <!-- ルームの一日あたりの費用x使用人数、今は一日の費用 -->
                     <%= @room.room_price %>円/日
                     </h5>
                     <div class= "reservation-new-date-select">
-                    <%= form_with url: reservation_index_path do |f| %>
-                        <%= f.hidden_field :id %>
+                    <%= form_with url: reservation_path do |f| %>
+                        <%= f.hidden_field :id, value: @reservation.id %>
                         <%= f.label :start_date,"開始日" %></br>
-                        <%= f.text_field :start_date, value: @room.start_date, readonly: true %></br>
+                        <%= f.text_field :start_date, value: @reservation.start_date, readonly: true %></br>
                         <%= f.label :end_date, "終了日" %></br>
-                        <%= f.text_field :end_date, value: @room.end_date, readonly: true %></br>
+                        <%= f.text_field :end_date, value: @reservation.end_date, readonly: true %></br>
                         <h6 class="reservations-new-check-content">
-                        <!-- ルームの使用日数、今は終了日 -->
-                        使用日数 : <%= @room.stay_days %>日</br>
+                        使用日数 : <%= @reservation.stay_days %>日</br>
                         </h6>
                         <h6 class="reservations-new-check-content">
-                        人数 : <%= @room.person_num %>人</br>
+                        人数 : <%= @reservation.person_num %>人</br>
                         </h6>
-                        <%= f.label :total_price,"合計金額" %>
-                        <!-- #ルームの一日あたりの費用x使用人数x使用日数、今は一日の費用 -->
-                        <%= @room.total_price %>円</br>
+                        <%= f.label :total_price, "合計金額" %></br>
+                        <%= f.text_field :total_price, value: @room.room_price * @reservation.stay_days * @reservation.person_num, readonly: true %></br>
+                        <%= f.hidden_field :room_id, value: @room.id %>
                         <p class="reservations-new-check-content">
                         上記内容でよろしければ「予約を確定」を押してください
                         </p>

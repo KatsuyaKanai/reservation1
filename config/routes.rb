@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'rooms/new'
   post 'rooms/new', to: 'rooms#create'
   get 'rooms/:id', to: 'rooms#show'
-  get 'rooms/create'
+  #get 'rooms/create'
+  post 'rooms/:id', to: 'rooms#update'
+
   resources :users
   resources :rooms
   resources :reservation
