@@ -31,6 +31,4 @@ class ReservationController < ApplicationController
     end
   end
   
-
-
 end
