@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'rooms/:id', to: 'rooms#show'
   #get 'rooms/create'
   post 'rooms/:id', to: 'rooms#update'
+  post 'reservation/new', to: 'reservation#create'
 
   resources :users
   resources :rooms

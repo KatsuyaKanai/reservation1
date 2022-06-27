@@ -8,11 +8,11 @@
                     予約内容確認
                     </h4>
                     <h5 class= "price-icon">
-                    <%= @room.room_price %>円/日
+                    <%= @room.room_price%>円/日
                     </h5>
                     <div class= "reservation-new-date-select">
-                    <%= form_with url: reservation_path do |f| %>
-                        <%= f.hidden_field :id, value: @reservation.id %>
+                    <%= form_with model: @reservations do |f| %>
+                        <%= f.hidden_field :id %>
                         <%= f.label :start_date,"開始日" %></br>
                         <%= f.text_field :start_date, value: @reservation.start_date, readonly: true %></br>
                         <%= f.label :end_date, "終了日" %></br>

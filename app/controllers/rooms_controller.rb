@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    binding.pry
+    
     @room = Room.find(params[:id])
    
   end
@@ -51,18 +51,16 @@ class RoomsController < ApplicationController
   end
 
   def update
-
-    binding.pry
-    
-    @reservation= Reservation.new(params.permit(:room_id, :start_date, :end_date, :person_num, :total_price))
+    @room = Room.find(params[:id])
+    @reservation = Reservation.new(params.permit(:room_id,:start_date,:end_date,:person_num))
     if @reservation.save
-    
     flash[:notice]= "保存しました。"
-    binding.pry
-    redirect_to new_reservation_path
+    redirect_to new_reservation_path(reservation_params)
     end
   end
-
+  def after_room_path_for
+    new_reservation_path(@reservation)
+  end
 
   
 
@@ -72,6 +70,7 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:id, :user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image)
       
     end
-
-
+    def reservation_params
+      params.permit(:room_id,:start_date,:end_date,:person_num,:total_price,:commit)
+    end
 end

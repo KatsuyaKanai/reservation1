@@ -5,8 +5,8 @@
         <div class= "col-md-12 user-view">
             <div class= "user-view-box">
                 <div class=b"row">
-                    <%= form_with model: @reservation,class: "update-content" do |f| %>
-                        
+                    <%= form_with class: "update-content" do |f| %>
+                        <%= f.hidden_field :id %>
                         <%= f.label :room_name, "予約した部屋", class: "col-md-3" %>
                         <p class= "col-md-9"><%= @room.room_name %></p>
                         <%= f.label :start_date, "開始日", class: "col-md-3" %>
