@@ -1,2 +1,30 @@
-<h1>Reservation#index</h1>
-<p>Find me in app/views/reservation/index.html.erb</p>
+<h3>一覧</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ルーム画像</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>合計料金</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>予約確定日時</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reservation.each do |reservation| %>
+            <tr>
+                <td><%= image_tag @reservation.room.room_image %></td>
+                <td><%= @reservation.room.room_name %></td>
+                <td><%= @reservation.room.room_introduce %></td>
+                <td><%= @reservation.total_price %></td>
+                <td><%= @reservation.start_date %></td>
+                <td><%= @reservation.end_date %></td>
+                <td><%= @reservation.created_at %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+ 

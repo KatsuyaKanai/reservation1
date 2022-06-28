@@ -5,27 +5,21 @@ class ReservationController < ApplicationController
   end
 
   def index
+    @reservation = Reservation.all
     binding.pry
-
-    @reservations = Reservation.all
-
   end
   def new
     @reservation = Reservation.new(reservation_params)
-    binding.pry
-    
+    @reservation.user_id = current_user.id
     @room = Room.find(params[:room_id])
-    binding.pry
   end
 
 
   
   def show
     @reservation = Reservation.find(params[:id])
-    binding.pry
-    @room = Room.find(params[:room_id])
-    binding.pry
-    
+    @reservation.user_id = current_user.id
+    @room = Room.find(@reservation.room_id)
   end
 
 
@@ -41,12 +35,10 @@ class ReservationController < ApplicationController
   def update
   end
   def create
-    @reservation = Reservation.create(reservation_params)
-binding.pry
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user_id = current_user.id
     @room = Room.find(params[:room_id])
-    binding.pry
     @reservation.save
-      binding.pry
       redirect_to reservation_path(@reservation)
   end
   private

@@ -18,10 +18,8 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(params.require(:room).permit(:id, :user_id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
     @room.user_id = current_user.id
-    binding.pry
     if @room.save!
       flash[:notice] = "登録しました"
-      binding.pry
       redirect_to room_path(@room)
     else
       flash[:notice] = "失敗しました"
@@ -53,15 +51,13 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     @reservation = Reservation.new(params.permit(:room_id,:start_date,:end_date,:person_num))
+    @reservation.user_id = current_user.id
     if @reservation.save
     flash[:notice]= "保存しました。"
     redirect_to new_reservation_path(reservation_params)
     end
   end
-  def after_room_path_for
-    new_reservation_path(@reservation)
-  end
-
+  
   
 
   private

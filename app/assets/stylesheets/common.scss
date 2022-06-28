@@ -262,7 +262,7 @@ h1,h5{
 }
 .col,.col-1,.co-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-auto,
 .col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-2, .col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-auto,
-.col-md,.col-md-1,.col-md-10,.col-md-11.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,
+.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,
 .col-sm,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-auto,
 .col-xl,.col-xl-1,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-auto{
     position: relative;
@@ -270,7 +270,7 @@ h1,h5{
     padding-right: 15px;
     padding-left: 15px;
 }
-.top span{
+.top ,span{
     position: absolute;
     bottom: 50px;
     left: 0;
@@ -282,7 +282,7 @@ h1,h5{
     text-align: center;
     font-size: 24px;
 }
-.top .panel-image{
+.top, .panel-image{
     width: 100%;
     height: 360px;
     object-fit: cover;
@@ -298,7 +298,6 @@ img{
             rgba(0,0,0,.15)!important;
 }
 .footer{
-    bottom: 0;
     width: 100%;
     height: 180px;
     margin-top: 64px;
@@ -307,6 +306,8 @@ img{
     box-sizing: border-box;
     color: #fff;
     text-align: center;
+    
+    bottom: 0;
 }
 footer{
     display: block;
@@ -323,29 +324,29 @@ footer{
 .d-none{
     display: none!important;
 }
-.user .user-nav-pc .active{
+.user,.user-nav-pc .active{
     border-right: 3px solid #4a90e2;
 }
-.user .user-nav li{
+.user,.user-nav li{
     font-size: 18px;
     padding: 10px;
 }
-.user .user-nav-mobile{
+.user, .user-nav-mobile{
     width: 100%;
     box-sizing: border-box;
     padding: 30px 15px;
 }
-.user .user-view{
+.user, .user-view{
     background-color: #F6F8F9;
     border-left: 2px solid #e2e2e2;
 }
-.user .user-view-box{
+.user, .user-view-box{
     max-width: 880px;
     background-color: #fff;
     border: 1px solid #eaedef;
     margin: 30px auto;
 }
-.user .update-content{
+.user, .update-content{
     border-bottom: 1px solid #eaedef;
     padding: 20px;
     margin: 0 15px;
@@ -354,13 +355,13 @@ footer{
 h5{
     font-size: 1.25rem;
 }
-.user .update-content{
+.user,.update-content{
     border-bottom: 1px solid #eaedef;
     padding: 20px;
     margin: 0 15px;
     font-size: 16px;
 }
-.user .icon-box{
+.user,.icon-box{
     text-align: center;
 }
 .host-icon{
@@ -369,7 +370,7 @@ h5{
     object-fit: cover;
     border-radius: 50px;
 }
-.user .update-content label{
+.user,.update-content label{
     font-weight: bold;
 }
 [type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){
@@ -430,39 +431,39 @@ label[for="menu"]::before{
 .room-new{
     width:100%;
 }
-.room-new .room-nav-pc{
+.room-new, .room-nav-pc{
     height: 100vh;
 }
-.room-new .room-nav{
+.room-new, .room-nav{
     width: 100%;
     box-sizing: border-box;
     padding: 30px 15px;
 }
-.room-new .room-nav-mobile{
+.room-new, .room-nav-mobile{
     height: auto;
 }
-.room-new .room-nav-mobile .active{
+.room-new, .room-nav-mobile .active{
     border-bottom: 3px solid
             #4a90e2;
 }
-.room-new .room-nav-mobile li{
+.room-new, .room-nav-mobile li{
     float: left;
 }
-.room-new .room-nav li{
+.room-new,.room-nav li{
     font-size: 18px;
     padding: 10px;
 }
-.room-new .room-view{
+.room-new, .room-view{
     background-color: #F6F8F9;
     border-left: 2px solid #e2e2e2;
 }
-.room-new .room-view-box{
+.room-new, .room-view-box{
     max-width: 880px;
     background-color: #fff;
     border: 1px solid #eaedef;
     margin: 50px auto;
 }
-.room-new .update-content{
+.room-new, .update-content{
     border-bottom: 1px solid
             #eaedef;
     padding: 20px;
@@ -542,3 +543,4 @@ input[type=date],input[type=datetime-local],input[type=month],input[type=time]{
 .offset-3{
     margin-left: 30%;
 }
+
