@@ -2,8 +2,8 @@ class Room < ApplicationRecord
     
     mount_uploader :room_image, ImageUploader
 
-    belongs_to :user, optional: true
-    belongs_to :reservation,optional: true
+    belongs_to :user
+    has_many :reservations
     gem "refile-mini_magick"
 
     validates :room_name,presence: true

@@ -14,15 +14,15 @@
       </thead>
 
       <tbody>
-        <% @reservation.each do |reservation| %>
+        <% @reservations.each do |reservation| %>
             <tr>
-                <td><%= image_tag @reservation.room.room_image %></td>
-                <td><%= @reservation.room.room_name %></td>
-                <td><%= @reservation.room.room_introduce %></td>
-                <td><%= @reservation.total_price %></td>
-                <td><%= @reservation.start_date %></td>
-                <td><%= @reservation.end_date %></td>
-                <td><%= @reservation.created_at %></td>
+              <td><%= image_tag reservation.room.room_image %></td>
+              <td><%= reservation.room.room_name %></td>
+              <td><%= reservation.room.room_introduction %></td>
+              <td><%= reservation.total_price %></td>
+              <td><%= reservation.start_date %></td>
+              <td><%= reservation.end_date %></td>
+              <td><%= reservation.created_at %></td>
             </tr>
         <% end %>
       </tbody>

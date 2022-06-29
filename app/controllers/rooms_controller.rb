@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(params.require(:room).permit(:id, :user_id, :room_name,:room_introduction,:room_price,:room_address,:room_image))
     @room.user_id = current_user.id
-    if @room.save!
+    if @room.save
       flash[:notice] = "登録しました"
       redirect_to room_path(@room)
     else
@@ -28,34 +28,23 @@ class RoomsController < ApplicationController
   end
 
   def show
-    
     @room = Room.find(params[:id])
-   
+    binding.pry
   end
 
-  def listing
-  end
-
-  def pricing
-  end
-
-  def description
-  end
-
-  def photo_upload
-  end
-
-  def location
-  end
 
   def update
+    binding.pry
     @room = Room.find(params[:id])
+    binding.pry
+    #reservationにrequireは不必要?
     @reservation = Reservation.new(params.permit(:room_id,:start_date,:end_date,:person_num))
+    binding.pry
     @reservation.user_id = current_user.id
-    if @reservation.save
+    @reservation.save
+    binding.pry
     flash[:notice]= "保存しました。"
     redirect_to new_reservation_path(reservation_params)
-    end
   end
   
   
@@ -66,6 +55,7 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:id, :user_id, :room_name, :room_introduction, :room_price, :room_address, :room_image)
       
     end
+    #requireでエラー「param is missing or the value is empty」ので不必要？
     def reservation_params
       params.permit(:room_id,:start_date,:end_date,:person_num,:total_price,:commit)
     end
