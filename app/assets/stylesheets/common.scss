@@ -543,4 +543,25 @@ input[type=date],input[type=datetime-local],input[type=month],input[type=time]{
 .offset-3{
     margin-left: 30%;
 }
+.room-post-image{
+    width: 240px;
+    height: 140px;
+    object-fit: cover;
+}
 
+table th{
+    background-color: rgb(119, 150, 250);
+    padding: 10px 20px;
+}
+
+table td{
+    background-color: rgb(241, 240, 245);
+    padding: 10px 20px;
+    text-align: center;
+    
+}
+
+.notice{
+    background: #ccf;
+    padding: 5px;
+}

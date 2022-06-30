@@ -1,8 +1,9 @@
-<h3>一覧</h3>
+<h3>予約済みルーム一覧</h3>
 
     <table>
       <thead>
         <tr>
+          <th><%= hidden_field_tag "ルームID" %></th>
           <th>ルーム画像</th>
           <th>ルーム名</th>
           <th>ルーム紹介</th>
@@ -14,11 +15,12 @@
       </thead>
 
       <tbody>
-        <% @reservations.each do |reservation| %>
+        <% @reservation.each do |reservation| %>
             <tr>
-              <td><%= image_tag reservation.room.room_image %></td>
-              <td><%= reservation.room.room_name %></td>
-              <td><%= reservation.room.room_introduction %></td>
+              <td><%= hidden_field_tag reservation.room.id if reservation.room %></td>
+              <td><%= link_to image_tag reservation.room.room_image.url,class:"room-post-image" if reservation.room %></td>
+              <td><%= link_to reservation.room.room_name if reservation.room %></td>
+              <td><%= reservation.room.room_introduction if reservation.room %></td>
               <td><%= reservation.total_price %></td>
               <td><%= reservation.start_date %></td>
               <td><%= reservation.end_date %></td>
