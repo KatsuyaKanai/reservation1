@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   #get 'rooms/create'
   post 'rooms/:id', to: 'rooms#update'
   post 'reservation/new', to: 'reservation#create'
+  get 'search', to: 'rooms#search'
 
   resources :users
   resources :rooms

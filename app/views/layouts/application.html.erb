@@ -19,12 +19,9 @@
         <%= link_to homes_index_path do %>
           <%= image_tag '/assets/logo.png' %>
         <% end %>
-        <%#
-        <a href="/"><img alt="サイトのロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png" /></a>
-        %>
-        <%= form_with url: "/search", method: :get do |form| %>
-          <%= form.label :query, "Search for:" %>
-          <%= form.text_field :query %>
+        <%= form_with url: search_path, method: :get, local: true do |form| %>
+          <%= form.text_field :search_room_address, value: @search_room_address, :placeholder => "エリア名を入力して下さい" %>
+          <%= form.text_field :search_room_name_introduction, value: @search_room_name_introduction, :placeholder => "キーワード" %>
           <%= form.submit "探す" %>
         <% end %>
     </div>

@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
   end
   
   def index
-    @rooms = Room.all
+    @rooms = Room.where(user_id: current_user)
   end
 
   def new
@@ -37,7 +37,16 @@ class RoomsController < ApplicationController
     flash[:notice]= "保存しました。"
     redirect_to new_reservation_path(reservation_params)
   end
-  
+  def search
+    binding.pry
+    @rooms = Room.search(params[:search_room_address])
+    binding.pry
+    @rooms = Room.search(params[:search_room_name_introduction])
+    binding.pry
+    @search_room_address = params[:search_room_address]
+    binding.pry
+    @search_room_name_introduction = params[:search_room_name_introduction]
+  end
   
 
   private

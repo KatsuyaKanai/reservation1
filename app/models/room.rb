@@ -15,11 +15,27 @@ class Room < ApplicationRecord
     def stay_days
         (end_date - start_date).to_int
     end
-   
-    #なぜか使えなくなりました
-    #def total_price
-    #   room_price * (end_date - start_date).to_int * person_num
-    #end
+    
+    def self.search(search_room)
+        binding.pry
+        if search_room_address
+            binding.pry
+          Room.where(['room_address like?', "%#{search_room_address}%"])
+        else
+            binding.pry
+          Room.all
+        end
+    end
+    def self.search(search_room_name_introduction)
+        binding.pry
+        if search_room_name_introduction
+            binding.pry
+          Room.where(['room_name like? OR room_introduction like?', "%#{search_room_name_introduction}%","%#{search_room_name_introduction}%"])
+        else
+            binding.pry
+          Room.all
+        end
+    end
 
    
     

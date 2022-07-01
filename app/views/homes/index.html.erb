@@ -16,17 +16,10 @@
                     <div class="form-fream">
                         <div class="form-area">
                             <p class="form-area-title mb-4">Potepan Shareでまだ体験したことのない旅をしよう</p>
-                            <%= form_with url: "/search", method: :get do |form| %>
-                                <%= form.text_field :query %>
+                            <%= form_with url: search_path, method: :get, local: true do |form| %>
+                                <%= form.text_field :search_room_address, value: @search_room_address, :placeholder => "エリア名を入力して下さい" %>
                                 <%= form.submit "探す" %>
-                            <% end %>
-                            <%# 
-                                <form action="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search" accept-charset="UTF-8" method="get">
-                                    <label for="___">エリア</label>
-                                    <input type="text" name="area" id="area" value="" class="form-control mb-4" placeholder="東京" />
-                                    <input type="submit" name="commit" value="探す" class="form-control btn-primary mb-4" data-disable-with="探す" />
-                                </form>
-                            %>                    
+                            <% end %>            
                         </div>
                     </div>
                 </div>
@@ -41,9 +34,6 @@
                         <%= link_to homes_index_path do %>
                             <%= image_tag '/assets/img_tokyo.jpeg', class: "panel-image" %>
                         <% end %>
-                        <%#
-                        <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E6%9D%B1%E4%BA%AC"><img class="panel-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_tokyo.jpg" /></a>
-                        %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
@@ -51,9 +41,6 @@
                         <%= link_to homes_index_path do %>
                             <%= image_tag '/assets/img_osaka.jpeg', class: "panel-image" %>
                         <% end %>
-                        <%#
-                        <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E5%A4%A7%E9%98%AA"><img class="panel-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_osaka.jpg" /></a>
-                        %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
@@ -61,9 +48,6 @@
                         <%= link_to homes_index_path do %>
                             <%= image_tag '/assets/img_kyoto.jpeg', class: "panel-image" %>
                         <% end %>
-                        <%#
-                        <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E4%BA%AC%E9%83%BD"><img class="panel-image shadow" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_kyoto.jpg" /></a>
-                        %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
@@ -71,9 +55,6 @@
                         <%= link_to homes_index_path do %>
                             <%= image_tag '/assets/img_sapporo.jpeg', class: "panel-image" %>
                         <% end %>
-                        <%#
-                        <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E6%9C%AD%E5%B9%8C"><img class="panel-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_sapporo.jpg" /></a>
-                        %>
                         <div class="shadow"></div>
                     </div>
                 </div>

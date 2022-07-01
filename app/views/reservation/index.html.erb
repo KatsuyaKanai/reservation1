@@ -18,8 +18,8 @@
         <% @reservation.each do |reservation| %>
             <tr>
               <td><%= hidden_field_tag reservation.room.id if reservation.room %></td>
-              <td><%= link_to image_tag reservation.room.room_image.url,class:"room-post-image" if reservation.room %></td>
-              <td><%= link_to reservation.room.room_name if reservation.room %></td>
+              <td><%= link_to image_tag("#{reservation.room.room_image.url}",class:"room-post-image"), controller: 'rooms', action: 'show', id: reservation.room.id if reservation.room %></td>
+              <td><%= link_to "#{reservation.room.room_name}", controller: 'rooms', action: 'show', id: reservation.room.id if reservation.room %></td>
               <td><%= reservation.room.room_introduction if reservation.room %></td>
               <td><%= reservation.total_price %></td>
               <td><%= reservation.start_date %></td>
