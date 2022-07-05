@@ -38,14 +38,8 @@ class RoomsController < ApplicationController
     redirect_to new_reservation_path(reservation_params)
   end
   def search
-    binding.pry
-    @rooms = Room.search(params[:search_room_address])
-    binding.pry
-    @rooms = Room.search(params[:search_room_name_introduction])
-    binding.pry
-    @search_room_address = params[:search_room_address]
-    binding.pry
-    @search_room_name_introduction = params[:search_room_name_introduction]
+    @rooms = Room.all.search(search_room_params)
+    render "rooms/search"
   end
   
 
@@ -58,5 +52,8 @@ class RoomsController < ApplicationController
     #requireでエラー「param is missing or the value is empty」ので不必要？
     def reservation_params
       params.permit(:id,:room_id,:start_date,:end_date,:person_num,:total_price,:commit)
+    end
+    def search_room_params
+      params.permit(:search_room_address, :search_room_name)
     end
 end

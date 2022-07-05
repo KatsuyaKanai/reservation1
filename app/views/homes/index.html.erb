@@ -17,7 +17,7 @@
                         <div class="form-area">
                             <p class="form-area-title mb-4">Potepan Shareでまだ体験したことのない旅をしよう</p>
                             <%= form_with url: search_path, method: :get, local: true do |form| %>
-                                <%= form.text_field :search_room_address, value: @search_room_address, :placeholder => "エリア名を入力して下さい" %>
+                                <%= form.text_field :search_room_address, value: @search_room, :placeholder => "エリア名を入力して下さい" %>
                                 <%= form.submit "探す" %>
                             <% end %>            
                         </div>
@@ -31,28 +31,28 @@
                 <div class="row">
                     <div class="panel-item col-lg-3 col-6">
                         <span>東京</span>
-                        <%= link_to homes_index_path do %>
+                        <%= link_to "/search?search_room_address=東京&search_room_name=&commit=探す" do %>
                             <%= image_tag '/assets/img_tokyo.jpeg', class: "panel-image" %>
                         <% end %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
                         <span>大阪</span>
-                        <%= link_to homes_index_path do %>
+                        <%= link_to "/search?search_room_address=大阪&search_room_name=&commit=探す" do %>
                             <%= image_tag '/assets/img_osaka.jpeg', class: "panel-image" %>
                         <% end %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
                         <span>京都</span>
-                        <%= link_to homes_index_path do %>
+                        <%= link_to "/search?search_room_address=京都&search_room_name=&commit=探す" do %>
                             <%= image_tag '/assets/img_kyoto.jpeg', class: "panel-image" %>
                         <% end %>
                         <div class="shadow"></div>
                     </div>
                     <div class="panel-item col-lg-3 col-6">
                         <span>札幌</span>
-                        <%= link_to homes_index_path do %>
+                        <%= link_to "/search?search_room_address=札幌&search_room_name=&commit=探す" do %>
                             <%= image_tag '/assets/img_sapporo.jpeg', class: "panel-image" %>
                         <% end %>
                         <div class="shadow"></div>

@@ -1,12 +1,24 @@
 <h3>検索結果</h3>
 <div class="search-result"> 
     <table>
+        <thead>
+            <tr>
+            
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>住所</th>
+            <th>料金</th>
+            </tr>
+        </thead>
+
         <% @rooms.each do |room| %>
             <tr>
-            <%= hidden_field_tag room.id %>
+           
             <td><%= link_to image_tag("#{room.room_image.url}", class:"room-post-image"), controller: 'rooms', action: 'show', id: room.id %></td>
             <td><%= link_to "#{room.room_name}", controller: 'rooms', action: 'show', id: room.id  %></td>
             <td><%= room.room_introduction %></td>
+            <td><%= room.room_address %></td>
             <td>¥<%= room.room_price %></td>
             </tr>
         <% end %>

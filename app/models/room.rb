@@ -4,6 +4,7 @@ class Room < ApplicationRecord
 
     belongs_to :user
     has_many :reservations
+    has_many :homes
     gem "refile-mini_magick"
 
     validates :room_name,presence: true
@@ -16,25 +17,9 @@ class Room < ApplicationRecord
         (end_date - start_date).to_int
     end
     
+   
     def self.search(search_room)
-        binding.pry
-        if search_room_address
-            binding.pry
-          Room.where(['room_address like?', "%#{search_room_address}%"])
-        else
-            binding.pry
-          Room.all
-        end
-    end
-    def self.search(search_room_name_introduction)
-        binding.pry
-        if search_room_name_introduction
-            binding.pry
-          Room.where(['room_name like? OR room_introduction like?', "%#{search_room_name_introduction}%","%#{search_room_name_introduction}%"])
-        else
-            binding.pry
-          Room.all
-        end
+        Room.where(["room_address like?","%#{search_room[:search_room_address]}%"]).where(["room_name like? OR room_introduction like?","%#{search_room[:search_room_name]}%","%#{search_room[:search_room_name]}%"])
     end
 
    

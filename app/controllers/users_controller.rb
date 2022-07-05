@@ -8,12 +8,10 @@ class UsersController < ApplicationController
    
     def new
         @user = User.new
-        binding.pry
         @user = User.find(params[:id])
     end
    
     def show
-        binding.pry
         @user = User.find(params[:id])
     end
     
@@ -41,7 +39,7 @@ class UsersController < ApplicationController
 
 
     def create
-        binding.pry
+        
         @user = User.new(params[:id])
         if @user.save
             redirect_to 'homes/index'

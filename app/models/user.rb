@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  has_many :homes
   has_many :rooms
   has_many :reservations
   # Include default devise modules. Others available are:
