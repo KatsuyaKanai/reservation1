@@ -1,3 +1,4 @@
+
 <div class="notifications">
 <%= flash[:notice] %>
 </div>
@@ -6,7 +7,15 @@
         <div class="col-md-8 ">
             <%= image_tag "#{@room.room_image}", alt: "アップロード画像", class:"room-show-image" %>
             <div class= "room-show-detile">
-                <%= image_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg', class:"host-icon" %>
+                <% if user_signed_in? %>
+                    <% if current_user.image? %>
+                        <%= image_tag current_user.image.url, class:"host-icon mx-3 img" %>
+                    <% else %>
+                        <%= image_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg', class:"host-icon mx-3 img" %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg', class:"host-icon" %>
+                <% end %>
                 <div class="room-show-profile">
                     <p class="room-show-profile-name"><%= @room.room_name %></p>
                     <p class="room-show-profile-addres"><%= @room.room_address %></p>
@@ -23,13 +32,17 @@
                     <%= form_with model: @reservation do |f| %>
                         <%= f.hidden_field :id %>
                         <%= f.label :start_date, "開始日" %>
-                        <%= f.date_field :start_date %></br>
+                        <%= f.date_field :start_date, required: true %></br>
                         <%= f.label :end_date, "終了日" %>
-                        <%= f.date_field :end_date %></br>
+                        <%= f.date_field :end_date, required: true %></br>
                         <%= f.label :person_num, "人数" %>
-                        <%= f.number_field :person_num, min:1 %></br>
+                        <%= f.number_field :person_num, min: 1, required: true %></br>
                         <%= f.hidden_field :room_id, value: @room.id %>
-                        <%= f.submit "予約する" %>
+                        <% if user_signed_in? %>
+                            <%= f.submit "予約する" %>
+                        <% else %>
+                            <%= link_to "ログイン", new_user_session_path, class: "header-nav" %>
+                        <% end %>
                     <% end %>
                 </div>
             </div>

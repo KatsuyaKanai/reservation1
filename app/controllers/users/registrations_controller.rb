@@ -1,34 +1,13 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-   before_action :configure_sign_up_params, only: [:create]
-   before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
 
-  
-  def create
-    @user = User.new(users_params)
-    binding.pry
-    if @user.save
-        redirect_to ('/users/profile')
-    else
-        redirect_to ('/homes/index')
-    end
+  def after_sign_in_path_for(resource)
+        profile_path(@user)
   end
-
-private
-def users_params
-    params.require(:user).permit(:name, :email, :password)
-end
-  
-    def sign_up_params
-      params.require(:name, :email,:password, :password_confirmation)
-    end
-  
-    def account_update_params
-      params.require(:name, :email)
-    end
-
   # GET /resource/sign_up
   # def new
   #   super

@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'
+  }
 
+  devise_scope :user do
+    get "signup", :to => "users/registrations#new"
+    get "login", :to => "users/session#new"
+    get "logout", :to => "users/sessions#destroy"
+  end
   
-  devise_for :users
   root to: 'homes#index'
   get 'homes/index', to: 'homes#index'
   get 'users/:id', to: 'users#new', as: 'profile'
@@ -10,10 +18,10 @@ Rails.application.routes.draw do
   get 'rooms/new'
   post 'rooms/new', to: 'rooms#create'
   get 'rooms/:id', to: 'rooms#show'
-  #get 'rooms/create'
   post 'rooms/:id', to: 'rooms#update'
   post 'reservation/new', to: 'reservation#create'
   get 'search', to: 'rooms#search'
+  post 'users/sign_in', to: 'homes#index'
 
   resources :users
   resources :rooms

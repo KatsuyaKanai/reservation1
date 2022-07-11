@@ -29,6 +29,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    
   end
 
 
@@ -51,7 +52,7 @@ class RoomsController < ApplicationController
     end
     #requireでエラー「param is missing or the value is empty」ので不必要？
     def reservation_params
-      params.permit(:id,:room_id,:start_date,:end_date,:person_num,:total_price,:commit)
+      params.permit(:room_id,:start_date,:end_date,:person_num,:total_price,:commit)
     end
     def search_room_params
       params.permit(:search_room_address, :search_room_name)

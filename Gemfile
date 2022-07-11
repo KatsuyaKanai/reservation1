@@ -60,3 +60,5 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'devise-i18n'
+gem 'rails-i18n'

@@ -17,18 +17,15 @@ class UsersController < ApplicationController
     
 
     def after_new_user_session_path_for(resource)
-        binding.pry
         redirect_to homes_index_path
     end
     def after_new_user_registration_path_for
-        binding.pry
         redirect_to profile_path(@user)
     end
 
     def update
         @user = User.find(params[:id])
         if @user.update(params.require(:user).permit(:id, :name, :profile, :image))
-            binding.pry
             flash[:notice]= "保存しました。"
             redirect_to profile_path
         else

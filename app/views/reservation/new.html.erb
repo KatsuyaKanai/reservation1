@@ -1,4 +1,4 @@
-<div class= "notifications"></div>
+<%= render "shared/error", obj: @reservation %>
 <div class="row">
     <div class= "container reservations-new">
         <div class= "row">
@@ -8,7 +8,7 @@
                     予約内容確認
                     </h4>
                     <h5 class= "price-icon">
-                    <%= @room.room_price%>円/日
+                    <%= @room.room_price %>円/日
                     </h5>
                     <div class= "reservation-new-date-select">
                     <%= form_with model: @reservations, url: {controller: 'reservation', action: 'create' } do |f| %>
@@ -21,7 +21,8 @@
                         使用日数 : <%= @reservation.stay_days %>日</br>
                         </h6>
                         <h6 class="reservations-new-check-content">
-                        人数 : <%= @reservation.person_num %>人</br>
+                        <%= f.label :person_num,"人数" %>
+                        <%= f.text_field :person_num, value: @reservation.person_num, readonly: true %></br>
                         </h6>
                         <%= f.label :total_price, "合計金額" %></br>
                         <%= f.text_field :total_price, value: @room.room_price * @reservation.stay_days * @reservation.person_num, readonly: true %></br>
@@ -30,7 +31,7 @@
                         上記内容でよろしければ「予約を確定」を押してください
                         </p>
                         <%= f.submit "予約を確定" %></br>
-                        <%= link_to "戻る", :back %>
+                        <%= link_to "戻る", "http://localhost:3000/rooms/#{@room.id}" %>
                     <% end %>
                 </div>
             </div>

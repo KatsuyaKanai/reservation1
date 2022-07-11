@@ -3,7 +3,6 @@ class ReservationController < ApplicationController
   def room_id
     @room.id
   end
-
   def index
     @reservation = Reservation.all
   end
@@ -25,8 +24,14 @@ class ReservationController < ApplicationController
     @reservation = Reservation.new(params.permit(:id,:room_id,:start_date,:end_date,:person_num,:total_price))
     @reservation.user_id = current_user.id
     @room = Room.find(params[:room_id])
-    @reservation.save
-    redirect_to reservation_path(@reservation)
+    @reservation.valid?
+    if @reservation.save
+      binding.pry
+      redirect_to reservation_path(@reservation)
+    else 
+      flash[:notice] = "登録に失敗しました"
+      render "new"
+    end
   end
   private
   

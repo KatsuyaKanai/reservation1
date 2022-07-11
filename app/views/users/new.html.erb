@@ -1,7 +1,6 @@
-<div class="notifications">
+<%= render "shared/error", obj: @user %>
 <%= flash[:notice] %>
 <%= flash[:alert] %>
-</div>
 <div class="container-fiuld user">
     <div class="row">
         <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
@@ -32,11 +31,11 @@
                     <%= form_with model: @user do |f| %>
                         <%= f.hidden_field :id %>
                         <%= f.label :image, 'アイコン画像', class:"col-md-6 offset-md-3"%>
-                        <%= f.file_field :image, class:"mb-4 col-md-9" %>
+                        <%= f.file_field :image, class:"mb-4 col-md-9", required: true %>
                         <%= f.label :name, '名前', class:"col-md-3 required-a" %>
-                        <%= f.text_field :name, class:"form-control mb-4 col-md-9" %>
+                        <%= f.text_field :name, class:"form-control mb-4 col-md-9", required: true %>
                         <%= f.label :profile, '自己紹介', class:"col-md-3 required-a" %>
-                        <%= f.text_area :profile, rows:5, class:"form-control mb-4 col-md-9" %>
+                        <%= f.text_area :profile, rows:5, class:"form-control mb-4 col-md-9", required: true %>
                         <%= f.submit "更新", class:"col-md-2 btn btn-primary mx-3" %>
                     <% end %>
                 </div>
