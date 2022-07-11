@@ -26,7 +26,6 @@ class ReservationController < ApplicationController
     @room = Room.find(params[:room_id])
     @reservation.valid?
     if @reservation.save
-      binding.pry
       redirect_to reservation_path(@reservation)
     else 
       flash[:notice] = "登録に失敗しました"

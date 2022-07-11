@@ -24,7 +24,7 @@
                     </div>
                     <div class="update-content">
                         <%= form_with model:@room do |f| %>
-                            <%= f.hidden_field :user_id, value: current_user %>
+                            <%= f.hidden_field :user_id, value: current_user.id %>
                             <%=f.label :room_name, "ルーム名", class:"col-md-3 required-a" %>
                             <%= f.text_field :room_name, placeholder: "ルーム名を入力", class:"form-control mb-4 col-md-9" %>
                             <%= f.label :room_introduction, "ルーム紹介", class:"col-md-3 required-a" %>
