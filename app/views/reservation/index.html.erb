@@ -1,0 +1,32 @@
+<h3>予約済みルーム一覧</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th><%= hidden_field_tag "ルームID" %></th>
+          <th>ルーム画像</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>合計料金</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>予約確定日時</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reservation.each do |reservation| %>
+            <tr>
+              <td><%= hidden_field_tag reservation.room.id if reservation.room %></td>
+              <td><%= link_to image_tag("#{reservation.room.room_image.url}",class:"room-post-image"), controller: 'rooms', action: 'show', id: reservation.room.id if reservation.room %></td>
+              <td><%= link_to "#{reservation.room.room_name}", controller: 'rooms', action: 'show', id: reservation.room.id if reservation.room %></td>
+              <td><%= reservation.room.room_introduction if reservation.room %></td>
+              <td><%= reservation.total_price %></td>
+              <td><%= reservation.start_date %></td>
+              <td><%= reservation.end_date %></td>
+              <td><%= reservation.created_at %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+ 

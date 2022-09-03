@@ -5,54 +5,56 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-  
-
-  <header class="header">
-  <div class="header-inner">
-    <div class="header-left-nav">
-        <a href="/"><img alt="サイトのロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png" /></a>
-        <form action="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search" accept-charset="UTF-8" method="get">
-        <div class="header-sharch d-lg-inline-block d-none">
-          <input type="text" name="area" id="area" value class="form-control" placeholder="エリア" />
-          <i class="fas fa-map-marker-alt"></i>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+            <%= link_to homes_index_path do %>
+              <%= image_tag '/assets/logo.png' %>
+            <% end %>
+            <%= form_with url: search_path, method: :get do |form| %>
+              <%= form.text_field :search_room_address, value: @search_room, :placeholder => "エリア名を入力して下さい" %>
+              <%= form.text_field :search_room_name, value: @search_room, :placeholder => "キーワード" %>
+              <%= form.submit "探す" %>
+            <% end %>
         </div>
-        <div class="header-sharch d-lg-inline-block d-none">
-          <input type="text" name="keyword" id="keyword" value class="form-control" placeholder="キーワード" />
-          <i class="fas fa-search"></i>
+        <div class="header-right-nav">
+            <div class="nav-item">
+                <% if user_signed_in? %>
+                <h4 class="nav-item d-sm-inline-block">
+                  <%= current_user.name %>
+                </h4>
+                  <label for="menu" >
+                    <% if current_user.image? %>
+                        <%= image_tag current_user.image.url, class:"host-icon mx-3 img" %>
+                    <% else %>
+                        <%= image_tag '/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpeg', class:"host-icon mx-3 img" %>
+                    <% end %>
+                  </label>
+                  <input type="checkbox" id="menu">
+                    <ul class="dropdown header-nav-menu">
+                      <%=link_to "ルーム登録",new_room_path %>
+                      <%=link_to "予約済みルーム一覧",reservation_index_path %>
+                      <%=link_to "登録済みルーム一覧",rooms_path %>
+                      <%=link_to "設定",account_path(current_user) %>
+                      <%=link_to "ログアウト",destroy_user_session_path, method: :delete %>
+                    </ul>
+                <% else %>
+                  <ul>
+                    <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary my-2 mx-3" %>
+                    <%= link_to "登録する", new_user_registration_path, class: "btn btn-secondary" %>
+                  </ul>
+                <% end %>
+            </div>
         </div>
-        <input type="submit" name="commit" value class="d-none" data-disable-with="" />
-        </form>    
-    </div>
-    <div class="header-right-nav">
-        <div class="nav-item">
-        <% if user_signed_in? %>
-        <ul>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %></li>
-        </ul>
-      <% else %>
-        <ul>
-          <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary my-2 mx-3" %></li>
-          <li><%= link_to "登録する", new_user_registration_path, class: "btn btn-secondary" %></li>
-        </ul>
-      <% end %>
-         
-        </div>
-    </div>
-  </div>
-  </header>
-  
-      <%= yield %>
-  
-  <footer class="footer">
+      </div>
+    </header>
+    <%= yield %>
+    <footer class="footer">
       <p>© 2022 POTEPAN.INC.</p>
-  </footer>
-  
+    </footer>
   </body>
-  
 </html>
